@@ -3,9 +3,15 @@
 I think i have fixed the ctcloss nan problem!
 
 Now!
+
+
 感谢原作者Holmeyoung！
-增加针对中文车牌识别
-demo改为多张图片测试
+
+修改为针对中国车牌识别
+demo改为多张图片测试 并在测试后显示结果统计
+
+网络模型增加了dropout
+
 
 Please pull the latest code from master.
 
