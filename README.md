@@ -4,6 +4,8 @@ I think i have fixed the ctcloss nan problem!
 
 Now!
 
+针对中文车牌识别 demo改为多张图片测试
+
 Please pull the latest code from master.
 
 Please update the pytorch to  `>= v1.2.0`
