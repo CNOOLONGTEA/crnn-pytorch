@@ -24,7 +24,7 @@ class BidirectionalLSTM(nn.Module):
 class CRNN(nn.Module):
 
     def __init__(self, imgH, nc, nclass, nh, n_rnn=2, leakyRelu=False):
-        dropout_rate = 0.5
+        dropout_rate = 0.5 
         super(CRNN, self).__init__()
         assert imgH % 16 == 0, 'imgH has to be a multiple of 16'
 
@@ -39,7 +39,7 @@ class CRNN(nn.Module):
             nIn = nc if i == 0 else nm[i - 1]
             nOut = nm[i]
             cnn.add_module('conv{0}'.format(i),
-                           nn.Conv2d(in_channels=nIn, out_channels=nOut, kernel_size_w=ks[i], kernel_size_h=ss[i], stride=ps[i]))
+                           nn.Conv2d(in_channels=nIn, out_channels=nOut, ks[i], ss[i], ps[i]))
             if batchNormalization:
                 cnn.add_module('batchnorm{0}'.format(i), nn.BatchNorm2d(nOut))
             if leakyRelu:
@@ -91,6 +91,4 @@ class CRNN(nn.Module):
     def backward_hook(self, module, grad_input, grad_output):
         for g in grad_input:
             g[g != g] = 0   # replace all nan/inf in gradients to zero
-
-
 
