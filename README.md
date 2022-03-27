@@ -3,8 +3,9 @@
 I think i have fixed the ctcloss nan problem!
 
 Now!
-
-针对中文车牌识别 demo改为多张图片测试
+感谢原作者Holmeyoung！
+增加针对中文车牌识别
+demo改为多张图片测试
 
 Please pull the latest code from master.
 
