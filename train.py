@@ -19,8 +19,8 @@ import models.crnn as net
 import params
 
 parser = argparse.ArgumentParser()
-parser.add_argument('-train', '--trainroot', required=True, help='path to train dataset')
-parser.add_argument('-val', '--valroot', required=True, help='path to val dataset')
+parser.add_argument('-train', '--trainroot',default="./lmdb/train/", required=False, help='path to train dataset')
+parser.add_argument('-val', '--valroot',default="./lmdb/val/", required=False, help='path to val dataset')
 args = parser.parse_args()
 
 if not os.path.exists(params.expr_dir):
@@ -259,10 +259,10 @@ if __name__ == "__main__":
                 print('[%d/%d][%d/%d] Loss: %f' %
                       (epoch, params.nepoch, i, len(train_loader), loss_avg.val()))
                 loss_avg.reset()
-
-            if i % params.valInterval == 0:
+        if epoch > 0:
+            if epoch % params.valEpoch == 0:
                 val(crnn, criterion)
 
             # do checkpointing
-            if i % params.saveInterval == 0:
+            if epoch % params.saveEpoch == 0:
                 torch.save(crnn.state_dict(), '{0}/netCRNN_{1}_{2}.pth'.format(params.expr_dir, epoch, i))
